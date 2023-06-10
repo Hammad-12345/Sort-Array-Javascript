@@ -4,13 +4,13 @@ const number = /^[0-9]+$/
 while (arr.length != 10) {
     const a = prompt("Enter 10 time only Number Here")
     if (a.match(number)) {
-        let b=parseInt(a)
+        let b = parseInt(a)
         arr.push(b)
     }
 
 }
 const ShowArrayHere = document.getElementById('ShowArrayHere')
-const ShowSortingArrayHere=document.getElementById('ShowSortingArrayHere')
+const ShowSortingArrayHere = document.getElementById('ShowSortingArrayHere')
 ShowArrayHere.innerHTML += `[ `
 arr.forEach(element => {
 
@@ -24,9 +24,9 @@ buttonSort.addEventListener('click', () => {
     h3.innerText = 'Sorting Array are List Here'
     h3.className = 'd-flex justify-content-center'
     body.appendChild(h3)
-    const div =document.createElement('div')
-    div.className='d-flex justify-content-center mb-3'
-    for (let index = 0; index < arr.length-1; index++) {
+    const div = document.createElement('div')
+    div.className = 'd-flex justify-content-center mb-3'
+    for (let index = 0; index < arr.length - 1; index++) {
         for (let j = 0; j < arr.length - 1; j++) {
             let temp;
             if (arr[j] > arr[j + 1]) {
@@ -34,19 +34,33 @@ buttonSort.addEventListener('click', () => {
                 arr[j + 1] = arr[j]
                 arr[j] = temp
             }
-            console.log(j)
+
 
         }
 
     }
-    console.log(arr)
-    div.innerHTML+=`[`
-    arr.forEach(element => {
+    div.innerHTML += `[ `
+    let index=0
+    setTimeout(sortingfunction(index))
+    function sortingfunction(value)
+    {
+        div.innerHTML += `${arr[value]} `
+        index++
+        console.log(index)
+        if(index!=arr.length)
+        {
+            console.log(index)
+            setTimeout(sortingfunction(index) ,9000)
+          
+        }
 
-        div.innerHTML += `${element} `
-    });
+    }
+    // arr.forEach(element => {
+    //     div.innerHTML += `${element} `
+
+    // });
     div.innerHTML += `]`
     body.appendChild(div)
-    buttonSort.style.display='none'
+    buttonSort.style.display = 'none'
 
 })
